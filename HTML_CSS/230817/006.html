@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>input</title>
+</head>
+
+<body>
+  <form method="GET">
+    <input type="button" value="버튼">
+    <input type="submit" value="전송">
+    <input type="reset" value="초기화">
+
+    <br>
+
+    <input type="text" minlength="5" maxlength="10" placeholder="아이디">
+    <input type="password">
+
+    <!-- 이메일 -->
+    <input type="email" name="email" value="abc@abc.com" disabled>
+
+    <input type="search" name="keyword" value="검색" readonly>
+    <input type="tel">
+    <input type="url">
+    <input type="number" max="100" min="10" step="10">
+
+    <br>
+
+    <input type="checkbox">
+    <input type="radio">
+    <input type="file" accept="image/jpg" multiple>
+    <input type="date">
+    <input type="datetime-local">
+    <input type="month">
+    <input type="time">
+    <input type="color">
+    <input type="range">
+
+
+
+    <fieldset class="fieldset">
+      <legend>사용 기술</legend>
+
+      <input type="checkbox" name="html" id="html" checked>
+      <label for="html">HTML</label>
+
+      <input type="checkbox" name="css" id="css">
+      <label for="css">CSS</label>
+
+      <input type="checkbox" name="js" id="js">
+      <label for="js">JavaScript</label>
+
+      <input type="checkbox" name="python" id="python">
+      <label for="python">Python</label>
+
+      <input type="checkbox" name="django" id="django">
+      <label for="django">Django</label>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>성별</legend>
+      <input type="radio" name="gender" value="male" id="male" checked>
+      <label for="male">남성</label>
+
+      <input type="radio" name="gender" value="females" id="female">
+      <label for="female">여성</label>
+
+      <input type="radio" name="gender" value="no" id="no">
+      <label for="no">선택 안함</label>
+    </fieldset>
+
+    <textarea style="resize: none;" rows="10" cols="50" minlength="10" maxlength="100"
+      placeholder="10자 이상 100자 이하로 내용을 입력해주세요"></textarea>
+  </form>
+
+</body>
+
+</html>
