@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+  <style>
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table>
+    <caption style="caption-side: bottom;">표 설명, 제목</caption>
+    <colgroup>
+      <col style="width:100px" />
+      <col style="width:200px" />
+      <col span="2" style="width:200px; background-color: skyblue;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>제목셀</th>
+        <th>제목셀</th>
+        <th colspan="2">제목셀</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th rowspan="2">제목셀</th>
+        <td>내용셀</td>
+        <td colspan="2" rowspan="2">내용셀</td>
+      </tr>
+      <tr>
+        <td>내용셀</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>합계</th>
+        <td>내용셀</td>
+        <td>내용셀</td>
+        <td>내용셀</td>
+      </tr>
+    </tfoot>
+  </table>
+
+</body>
+
+</html>

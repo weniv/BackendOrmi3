@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마진 병합현상</title>
+  <style>
+    .a,
+    .b {
+      width: 100px;
+      height: 100px;
+    }
+
+    .a {
+      background-color: salmon;
+      margin: 50px;
+    }
+
+    .b {
+      background-color: slateblue;
+      margin: 20px;
+    }
+
+    .parent {
+      background-color: skyblue;
+      /* padding: 50px; */
+      overflow: hidden;
+      /* border: 1px solid transparent; */
+    }
+
+    .child {
+      width: 100px;
+      height: 100px;
+      background-color: salmon;
+      margin: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="a">A</div>
+  <div class="b">B</div>
+
+  <div class="parent">
+    <div class="child">A</div>
+  </div>
+
+</body>
+
+</html>

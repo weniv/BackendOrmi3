@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구조적 가상 선택자</title>
+  <style>
+    /* .ol>li:first-child {
+      color: red;
+      border: 1px solid red;
+    } */
+
+    li:last-child {
+      color: green;
+    }
+
+    li:nth-child(3n+1) {
+      border: 1px solid blue;
+    }
+
+    li:not(:first-child) {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <ol class="ol">
+    <li class="item">list
+      <ol start="6">
+        <li>list</li>
+        <li>list</li>
+        <li>list</li>
+      </ol>
+    </li>
+    <li>list</li>
+    <li class="item">list</li>
+    <li>list</li>
+    <li>list</li>
+  </ol>
+
+</body>
+
+</html>

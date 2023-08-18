@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form 가상선택자</title>
+  <style>
+    input:disabled {
+      border: none;
+    }
+
+    input:enabled {
+      border: 1px solid royalblue;
+    }
+
+    input:read-only {
+      background-color: skyblue;
+    }
+
+    input:read-write {
+      background-color: gold;
+    }
+
+    input:required {
+      border-width: 2px;
+    }
+
+    input:checked+label {
+      text-decoration: line-through;
+      color: #767676;
+    }
+  </style>
+</head>
+
+<body>
+  <label>아이디
+    <input type="text" placeholder="아이디" required>
+  </label>
+  <br>
+  <label>비밀번호
+    <input type="password" placeholder="비밀번호" readonly>
+  </label>
+  <br>
+  <label>비밀번호 재입력
+    <input type="password" placeholder="비밀번호 재입력" disabled>
+  </label>
+  <br>
+
+  <input id="check" type="checkbox">
+  <label for="check">약관동의</label>
+</body>
+
+</html>

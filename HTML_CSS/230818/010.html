@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 상속</title>
+  <style>
+    h1,
+    h2,
+    p {
+      /* color: red */
+      border: 2px solid pink;
+    }
+
+    div {
+      color: royalblue;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    h1 {
+      color: initial;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>Hello</h1>
+    <h2>Hello</h2>
+    <p>Hello</p>
+    <button type="button">Hello</button>
+  </div>
+</body>
+
+</html>

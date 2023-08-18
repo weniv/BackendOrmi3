@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>복합 선택자</title>
+  <style>
+    section p {
+      border: 3px solid royalblue;
+    }
+
+    section>p {
+      background-color: skyblue;
+    }
+
+    section~p {
+      color: red;
+    }
+
+    section+p {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <p>하나</p>
+  <p>둘</p>
+  <p>셋</p>
+
+  <section>
+    <div>
+      <p>넷</p>
+    </div>
+    <p>다섯</p>
+    <p>여섯</p>
+  </section>
+
+  <p>일곱</p>
+  <p>여덟</p>
+  <p>아홉</p>
+</body>
+
+</html>

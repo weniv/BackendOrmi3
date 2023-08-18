@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Model</title>
+  <style>
+    div {
+      /* 원하는 크기: 100 * 60 */
+      /* 실제 적용된 크기: 160 x 120 */
+      /* 160 : 100 + (padding:20*2) + (border :10 *2) */
+
+      width: 100px;
+      height: 60px;
+      /* box-sizing: border-box; */
+
+      padding: 20px;
+      /* padding-top: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      padding-left: 20px; */
+      padding: 40px 30px 20px 10px;
+      /* padding-top: 40px;
+      padding-right: 30px;
+      padding-bottom: 20px;
+      padding-left: 10px; */
+      padding: 40px 30px 20px;
+      /* padding-top: 40px;
+      padding-right: 30px;
+      padding-bottom: 20px;
+      padding-left: 30px; */
+      padding: 40px 30px;
+      /* padding-top: 40px;
+      padding-right: 30px;
+      padding-bottom: 40px;
+      padding-left: 30px; */
+      margin: 20px auto;
+      margin: 20px 0 20px auto;
+
+      border: 10px double black;
+      /* border-width: 10px;
+      border-style: solid;
+      border-color: black; */
+
+    }
+
+    span {
+      padding: 20px;
+      border: 10px solid black;
+      margin: 0 20px;
+    }
+
+    button {
+      width: 100px;
+      height: 50px;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>box</div>
+  <span>inline</span>
+  <button type="button">버튼</button>
+
+</body>
+
+</html>
