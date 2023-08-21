@@ -1,0 +1,93 @@
+ul{
+  list-style: none;
+}
+/* 로그인 페이지 */
+.login{
+  width:400px;
+  margin: auto;
+
+}
+.main-title,
+.main-desc{
+  text-align: center;
+}
+
+.main-desc{
+  color: #767676;
+  margin: 10px 0 32px;
+}
+/* 컨테이너1 */
+.main-form{
+  display: flex;
+  flex-direction: column;
+  gap:16px;
+}
+
+/* 컨테이너2 */
+.flex-input{
+  display: flex;
+  align-items: center;
+}
+/* 컨테이너2 : 아이템 */
+.flex-input label{
+  width: 80px;
+}
+.flex-input input{
+  height:28px;
+  flex-grow: 1;
+  border:1px solid #ddd;
+  border-radius: 4px;
+}
+.login-btn{
+  background-color: royalblue;
+  border: 0;
+  border-radius: 4px;
+  height: 36px;
+  color:white;
+  font-weight: bold;
+
+  transition: background-color 0.3s ease;
+}
+.login-btn:hover{
+  background-color: green;
+}
+.login-btn:disabled{
+  background-color: #ccc;
+}
+
+/* field */
+
+/* fieldset 유지 */
+.field{
+  border: 0;
+}
+
+.field legend{
+  float: left;
+  width:80px;
+}
+
+/* div, p태그로 html 변경 */
+.field-flex{
+  display: flex;
+}
+.field-flex p{
+  width:80px;
+  flex-shrink: 0;
+}
+
+.field ul{
+  display: flex;
+  gap:10px;
+  flex-wrap: wrap;
+}
+.field input:disabled +label{
+  color:#ccc;
+}
+.field input:enabled + label{
+  cursor: pointer;
+}
+
+.field input:checked + label{
+  color:royalblue
+}

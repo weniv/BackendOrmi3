@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex</title>
+  <style>
+    .item {
+      /* width: 120px; */
+      /* height: 100px; */
+      background-color: skyblue;
+    }
+
+    .item:nth-child(odd) {
+      background-color: gold;
+    }
+
+    .container {
+      width: 500px;
+      height: 500px;
+      background-color: #ddd;
+      display: flex;
+      /* flex-direction: column; */
+      /* justify-content: space-evenly; */
+      /* align-items: center; */
+
+      /* 
+        align-content 사용 
+        flex-wrap: wrap; 적용이 되어있고, 2줄 이상일때 
+      */
+
+
+      /* gap: 10px; */
+
+    }
+
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* flex-grow: 1;
+      flex-basis:0; */
+      /* word-break: keep-all; */
+    }
+
+    /* .item:first-child+.item {} */
+    .item:first-child {
+      /* flex-grow: 2; */
+    }
+
+    /* 
+
+    .item:nth-child(2) {
+      color: red;
+      flex-grow: 3;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item">item1</div>
+    <div class="item">item2</div>
+    <div class="item">item3</div>
+    <div class="item">item4</div>
+    <!-- <div class="item">item5</div>
+    <div class="item">item6</div>
+    <div class="item">아이템7</div> -->
+
+  </div>
+
+
+</body>
+
+</html>

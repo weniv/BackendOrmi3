@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>layout-float</title>
+  <style>
+    header {
+      background-color: skyblue;
+      height: 50px;
+    }
+
+    section {
+      background-color: slateblue;
+      height: 200px;
+
+      width: 70%;
+      float: left;
+
+    }
+
+    aside {
+      background-color: lime;
+      height: 200px;
+
+      width: 30%;
+      float: right;
+    }
+
+    footer {
+      background-color: salmon;
+      height: 50px;
+
+      clear: both;
+    }
+
+    /* .clearfix::after {
+      content: '';
+      display: block;
+      clear: both;
+    } */
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div class="clearfix">
+    <section>section</section>
+    <aside>aside</aside>
+  </div>
+  <footer>footer</footer>
+</body>
+
+</html>

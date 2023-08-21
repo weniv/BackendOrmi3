@@ -1,0 +1,47 @@
+/* font */
+/* @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap'); */
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pretendard-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* 초기화 reset ------------------------ */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+button,
+fieldset,
+legend,
+ul, ol, li{
+  margin: 0;
+  padding: 0;
+}
+button:enabled{
+  cursor: pointer;
+}
+
+body{
+  /* font-family: 'Nanum Myeongjo', serif; */
+  font-family:  'Pretendard-Regular', sans-serif;
+}
+
+
+
+/* main -----------------------------  */
+.main-title{
+  font-size:24px;
+}
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>layout-float</title>
+  <style>
+    header {
+      background-color: skyblue;
+      height: 50px;
+    }
+
+    section {
+      background-color: slateblue;
+      height: 200px;
+
+      flex-grow: 1;
+    }
+
+    aside {
+      background-color: lime;
+      height: 200px;
+
+      width: 30%;
+    }
+
+    footer {
+      background-color: salmon;
+      height: 50px;
+    }
+
+    .flex {
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div class="flex">
+    <section>section</section>
+    <aside>aside</aside>
+  </div>
+  <footer>footer</footer>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    /* only-child 형제가 없는 요소 */
+    li:only-child {
+      color: red;
+    }
+
+    body :only-child {
+      background-color: skyblue;
+    }
+
+    /* ol 이면서 item 클래스를 가진것 */
+    ol.item {
+      border: 2px solid royalblue;
+    }
+
+    /* ol 자손이면서 item,bold 클래스를 동시에 가진것 */
+    ol .item.bold {
+      border: 2px solid gold;
+    }
+
+    /* ol 자손이면서 item 클래스를 가진것 */
+    ol .item {
+      background-color: green;
+    }
+
+    ol.item,
+    ol>.bold {
+      font-weight: bold;
+    }
+
+    /* ol.item {
+      font-weight: bold;
+    }
+
+    ol>.bold {
+      font-weight: bold;
+    } */
+
+    /* ol {
+      padding: 0;
+      list-style-position: inside;
+    } */
+  </style>
+</head>
+
+<body>
+  <ol>
+    <li class="item bold star">hello1</li>
+    <li class="item">hello2</li>
+    <li class="bold">hello3</li>
+  </ol>
+  <ol class="item">
+    <li>hello4</li>
+  </ol>
+  <p>
+    hello
+    <strong>every one!</strong>
+    <strong>every one!</strong>
+  </p>
+  <p>
+    hello
+    <strong>every one!</strong>
+  </p>
+</body>
+
+</html>

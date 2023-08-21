@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .body-l {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 100vh;
+    }
+
+    .login-container-bl {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 500px;
+      padding: 20px;
+    }
+
+    .login-title {
+      text-align: center;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    /* .form-label {
+      margin-bottom: 5px;
+    } */
+
+    .form-input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .form-input-width80 {
+      width: 80%;
+    }
+
+
+    .login-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+
+      margin-top: 10px;
+    }
+
+    .login-btn_hover:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <title>Login Page</title>
+</head>
+
+<body class="body-l">
+
+  <div class="login-container-bl">
+    <h1 class="login-title">로그인</h1>
+
+    <form>
+      <div class="form-group">
+        <label for="username" class="form-label">아이디</label>
+        <input type="text" id="username" name="username" required class="form-input form-input-width80">
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">비밀번호</label>
+        <input type="password" id="password" name="password" required class="form-input form-input-width80">
+      </div>
+      <div class="form-save">
+        <div>
+          <input type="checkbox" name="remember" class="form-save-checkbox">
+          <label for="remember" class="form-label">로그인 저장하기</label>
+        </div>
+      </div>
+      <button class="login-btn login-btn_hover" type="submit">Login</button>
+    </form>
+  </div>
+
+</body>
+
+</html>

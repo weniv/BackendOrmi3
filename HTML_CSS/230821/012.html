@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <style>
+    .login-box {
+      width: 350px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 10px;
+    }
+
+    p {
+      text-align: center;
+      color: hsl(0, 0%, 58%);
+      margin: 20px auto
+    }
+
+    .input-box {
+      font-size: 0;
+    }
+
+    .input-box>* {
+      font-size: 16px;
+    }
+
+    .input-box:nth-child(2) {
+      margin: 16px 0 20px 0;
+    }
+
+
+
+    .input-box label {
+      display: inline-block;
+      width: 100px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      /* 전체 너비 350px */
+      width: 250px;
+      height: 30px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+      border: 1px solid rgb(209, 209, 209);
+      border-radius: 4px;
+    }
+
+    [type="checkbox"] {
+      margin: 10px 5px 25px 0;
+    }
+
+    /* .input-box {
+      width: fit-content;
+    } */
+
+    button {
+      background-color: rgb(73, 108, 234);
+      color: white;
+      width: 100%;
+      height: 50px;
+      font-size: initial;
+      font-weight: bold;
+      border-radius: 5px;
+      border: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-box">
+    <h1>로그인</h1>
+    <p>아이디와 비밀번호를 입력하고 로그인하세요</p>
+    <form action="" method="POST">
+      <div class="input-box">
+        <label for="user-id">아이디</label>
+        <input id="user-id" type="text">
+      </div>
+
+      <div class="input-box">
+        <label for="user-pw">비밀번호</label>
+        <input id="user-pw" type="password">
+      </div>
+
+      <input type="checkbox" id="save-id">
+      <label for="save-id">아이디 저장</label>
+
+      <button type="submit">로그인</button>
+    </form>
+  </div>
+</body>
+
+</html>

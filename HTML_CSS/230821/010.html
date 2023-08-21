@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex</title>
+  <style>
+    .item {
+      /* width: 120px; */
+      /* height: 100px; */
+      background-color: skyblue;
+    }
+
+    .item:nth-child(odd) {
+      background-color: gold;
+    }
+
+    .container {
+      width: 500px;
+      height: 500px;
+      background-color: #ddd;
+      display: flex;
+      border: 10px solid red;
+
+      align-items: center;
+    }
+
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 200px;
+      flex-shrink: 0;
+    }
+
+    .item:first-child {
+      flex-shrink: 2;
+      align-self: end;
+    }
+
+    .item:nth-child(2) {
+      flex-shrink: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item">item1</div>
+    <div class="item">item2</div>
+    <div class="item">item3</div>
+    <div class="item">item4</div>
+  </div>
+
+
+</body>
+
+</html>
