@@ -1,0 +1,62 @@
+main{
+  width: 1000px;
+  margin: auto;
+}
+
+.board-table{
+  border-collapse: collapse;
+  width: 100%;
+  border-top:2px solid black;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.board-table th{
+  background-color: #eee;
+}
+
+.board-table th,
+.board-table td{
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+}
+
+.board-table th{
+  font-family: 'Pretendard-Bold';
+  padding:8px;
+}
+.board-table td{
+  padding:16px 8px;
+}
+
+.board-table a{
+  text-decoration: none;
+  font-family: 'Pretendard-Bold';
+  font-weight: bold;
+  color:inherit;
+}
+
+/* text-align-left */
+.tal{
+  text-align: left;
+}
+
+.write select{
+ width:160px;
+}
+
+.write input[type="text"],
+.write textarea{
+  width:100%;
+}
+
+.write textarea{
+  height: 200px;
+  resize: none;
+}
+
+input[type="file"]{
+  border:1px solid #ddd;
+  padding:8px;
+  border-radius: 4px;
+}

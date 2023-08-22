@@ -10,10 +10,9 @@
 @font-face {
   font-family: 'Pretendard-Bold';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
+  font-weight: 700;
+  font-style: bold;
 }
-
 
 /* 초기화 reset ------------------------ */
 body,
@@ -33,15 +32,113 @@ button:enabled{
   cursor: pointer;
 }
 
+a{
+  text-decoration: none;
+  color:inherit;
+}
+
 body{
   /* font-family: 'Nanum Myeongjo', serif; */
   font-family:  'Pretendard-Regular', sans-serif;
 }
 
+/* :root{
+  --graycolor : blue;
+}
+.dark{
+  --bgcolor: black;
+  --texcolor: white;
+}
+.light{
+  --bgcolor:yellow;
+  --texcolor: blue;
+}
 
+body{
+  background-color: var(--bgcolor);
+  color: var(--texcolor);
+} */
+
+/* form관련 */
+textarea,
+select,
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+  height:28px;
+  border:1px solid #ddd;
+  border-radius: 4px;
+  padding:0 8px;
+  box-sizing: border-box;
+}
 
 /* main -----------------------------  */
 .main-title{
   font-size:24px;
 }
+.main-desc{
+  color: #767676;
+  margin: 10px 0 32px;
+}
+.btn-group{
+  display: flex;
+  justify-content: flex-end;
+  gap:8px;
+  margin-top: 20px;
+}
 
+.btn{
+  border:1px solid #ccc;
+  background-color: #eee;
+  font: inherit;
+  color:inherit;
+  border-radius: 4px;
+  min-width:80px;
+  height:40px;
+  padding: 0 8px;
+}
+
+a.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* layout ----------------------------- */
+.layout-header{
+  height: 80px;
+  padding: 0 20px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.layout-header div{
+  display: flex;
+  gap: 40px;
+}
+.layout-header div *{
+  text-decoration: none;
+  font:inherit;
+  color:inherit;
+  background:none;
+  border: 0;
+}
+
+.layout-footer{
+  text-align: center;
+  background-color: #eee;
+  padding:30px 0;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap:60px;
+}
+main{
+  flex-grow: 1;
+}

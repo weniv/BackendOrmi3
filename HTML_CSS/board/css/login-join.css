@@ -12,10 +12,6 @@ ul{
   text-align: center;
 }
 
-.main-desc{
-  color: #767676;
-  margin: 10px 0 32px;
-}
 /* 컨테이너1 */
 .main-form{
   display: flex;
@@ -33,10 +29,7 @@ ul{
   width: 80px;
 }
 .flex-input input{
-  height:28px;
   flex-grow: 1;
-  border:1px solid #ddd;
-  border-radius: 4px;
 }
 .login-btn{
   background-color: royalblue;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록</title>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/list.css">
+</head>
+
+<body>
+  <!-- header -->
+  <header class="layout-header">
+    <h1><a href="./">HTML/CSS 실습</a></h1>
+
+    <div>
+      <a href="./chat.html">채팅</a>
+      <a href="./login.html">로그인</a>
+      <a href="./join.html">회원가입</a>
+      <button type="button">로그아웃</button>
+    </div>
+  </header>
+  <!-- // header -->
+
+  <!-- main -->
+  <main class="list">
+    <h2 class="main-title">글 목록</h2>
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2</td>
+          <td class="tal">
+            <a href="#ddd">위니브에서 수강생분들에게 알려드립니다.</a>
+          </td>
+          <td>홍길동</td>
+          <td>2023.04.25</td>
+          <td>999</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td class="tal">
+            <a href="./view.html">이스트소프트 백엔드 개발 오르미 1기 모집</a>
+          </td>
+          <td>홍길동</td>
+          <td>2023.03.25</td>
+          <td>999</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="btn-group">
+      <a class="btn" href="./write.html">글쓰기</a>
+    </div>
+  </main>
+  <!-- // main -->
+
+  <!-- footer -->
+  <footer class="layout-footer">
+    Copyright 2023. CHILLI All rights reserved.
+  </footer>
+  <!-- // footer -->
+
+
+</body>
+
+</html>
