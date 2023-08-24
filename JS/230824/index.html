@@ -140,15 +140,23 @@
         //     console.log("거짓이군요!");
         // }
 
+        // const arr = [1,2,3];
+        // function callbackfn(item){
+        //     let result
+        //     if (item%2===1) {
+        //         result = "홀수"
+        //     } else {
+        //         result = "짝수"
+        //     }
+        //     return result
+        // }
         const arr = [1,2,3];
         function callbackfn(item){
-            let result;
             if (item%2===1) {
-                result = "홀수"
+                return "홀수"
             } else {
-                result = "짝수"
+                return "짝수"
             }
-            return result
         }
         // console.log(callbackfn(10))
 
