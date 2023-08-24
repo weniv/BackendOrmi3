@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict"
+        // const x = ?
+        // 2 보다 크거나 또는 7보다 작은 x값 => t/f
+        // const x = 1;
+        // const S = x>2; // false
+        // const M = x<7; // true
+        // const A = S||M; // false || true => true
+        // console.log(A);
+
+        // 2 보다 크지않거나 또는 7보다 작은 x값 => t/f
+        // const x = 1;
+        // // const S = x<=2; // false
+        // const S = !(x>2); // false
+        // const M = x<7; // true
+        // const A = S||M; // false || true => true
+        // console.log(A);
+        // // 함수
+        // // 함수는 실행을하면 일련의 과정을 거치고 결과값을 돌려준다.
+        // // f(x) = x+2
+        // function plus2(x){
+        //     // 로직
+        //     const result = x+2;
+        //     return result
+        // }
+        // const plus2Reulst = plus2(1337);
+        // // console.log(plus2Reulst);
+        // console.log(plus2(1337))
+        
+        // console.log("함수들")
+        // // 1번
+        // function 안녕1(파라미터){
+        //     console.log(파라미터);
+        //     console.log('hello');
+        //     return 100;
+        // }
+
+        // let 아규먼트 = 1000;
+        // 안녕1(아규먼트);
+        // console.log(안녕1(아규먼트) + 안녕1(아규먼트));
+
+        // // 2번
+        // function 안녕2(){
+        //     console.log('hello');
+        // }
+
+        // 안녕2();
+        // console.log(String(안녕2()) + String(안녕2()));
+
+        // // 3번
+        // function 안녕3(){
+        //     console.log('hello')
+        //     return 10
+        // }
+
+        // 안녕3()
+        // console.log(String(안녕3()) + String(안녕3()))
+
+        // // 4번
+        // function 안녕4(){
+        //     console.log('hello')
+        //     console.log('hello')
+        //     console.log('hello')
+        //     return;
+        //     console.log('hello')
+        //     console.log('hello')
+        //     console.log('hello')
+        // }
+
+        // // 안녕4()
+        // console.log(안녕4())
+        // forEach 그리고 callbackfn
+        // const arr = ['참외', '키위', '감귤'];
+        // arr.forEach(function(item, index) {
+        //     console.log(item,`은(는) ${index}번째 입니다.`);
+        // });
+
+        // const arr = ['참외', '키위', '감귤'];
+        // function callbackfn(item, index, arr) {
+        //     console.log(item,`은(는) ${index}번째 입니다.`);
+        // }
+        // arr.forEach(callbackfn);
+
+
+        // const arr = ['참외', '키위', '감귤'];
+        // function callbackfn(item, index, arr) {
+        //     console.log(item,`은(는) ${index}번째 입니다.`);
+        //     console.log("원본배열은",arr,"입니다.");
+        //     document.write(item,`은(는) ${index}번째 입니다.`)
+        // }
+        // arr.forEach(callbackfn);
+        //map => callbackfn에서 리턴한 값들을 모아 새로운 배열을 만든다!
+        // const arr = [1,2,3];
+        // function callbackfn(item){
+        //     return item*2
+        // }
+        // console.log(arr.map(callbackfn))
+        // console.log(arr)// 원본값이 변하지 않음!
+        // const arr = [1,2,3,4,5];
+        // function filterFn(num) {
+        //     return num%2===1//홀수인지 판별해주는 조건식
+        // }
+        // const filterFn = (num)=>num%2===1
+        // const result = arr.filter(filterFn);
+        // const result = arr.filter((num)=>num%2===1);// 화살표 익명함수 사용하기.
+        // console.log(result);
+        // arr.reduce
+        // const arr = [1,2,3,4]
+        // 1부터 4까지 다 더하는거 만들기!
+        // 1+2 -> 3
+        // 3+3 -> 6
+        // 6+4 -> 10
+        // function reducer(x,y) {
+        //     return x+y
+        // }
+        // const result = arr.reduce(reducer, 0);
+        // console.log(result);
+        //  초깃값이 없으면 애러가 날 수 있는 경우가 있으니 주의<< 이런경우 찾아보기
+
+        
+        //조건문
+        const test=5;
+        // 만약에 ()안에있는 값이 true라면~ 코드블럭 안에있는코드를 실행하겠다!
+        // if(test < 10){
+        //     //codes
+        //     console.log("참입니까?");
+        // }
+        // if(test > 10){
+        //     //codes
+        //     console.log("참입니까?");
+        // }else{
+        //     console.log("거짓이군요!");
+        // }
+
+        const arr = [1,2,3];
+        function callbackfn(item){
+            let result;
+            if (item%2===1) {
+                result = "홀수"
+            } else {
+                result = "짝수"
+            }
+            return result
+        }
+        // console.log(callbackfn(10))
+
+        //홀수 짝수 구분해서 텍스트로 배열만들기
+        console.log(arr.map(callbackfn))
+
+        // 과제 
+        // reduce를 이용해서 홀수만 누적하기
+        // 초깃값이 없으면 애러가 날 수 있는 경우가 있으니 주의<< 이런경우 찾아보기
+    </script>
+</body>
+</html>
