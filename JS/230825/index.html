@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // for(let i=0; i<10; i+=2){
+        //     document.write(i, '<br>');
+        // }
+        // for(let i=1; i<10; i++){
+        //     document.write(i*2, '<br>');
+        // }
+        // 이중 for문 이용하여 구구단 만들기
+        // for(let i=2; i<10; i++){
+        //     for(let j=1; j<10; j++){
+        //         document.write(i*j, '<br>');
+        //     }
+        // }
+
+        // 조건문 + break를 사용하여 50보다 작은수만 보여주기
+        // for(let i=2; i<10; i++){
+        //     for(let j=1; j<10; j++){
+        //         if (i*j>50) {
+        //             break
+        //         }
+        //         document.write(i*j, '<br>');
+        //     }
+        // }
+        const cars2 = ["BMW", "Volvo", "Saab", "Ford", "Flat", "Audi"];
+        // 아래 코드는 6번실행됨
+        // cars2.forEach((item,index)=>{
+        //     console.log("실행");
+        //     if (index%2==1) {
+        //         console.log(item)
+        //     }
+        // })
+        
+        // 하지만 이코드는 3번만 실행된다.
+        // for (let index = 1; index < cars2.length; index+=2) {
+        //     console.log("실행")
+        //     const item = cars2[index];
+        //     console.log(item)
+        // }
+
+        // for(let i=1; i<10; i++){
+        //     document.write(i*2, '<br>');
+        // }
+        // 위의 for문을 while문으로 바꾸기
+        // let i = 1;
+        // while(i<10){
+        //     document.write(i*2, '<br>');
+        //     i++
+        // }
+
+        // do while은 무조건 한번실행함
+        // let num = 0;
+        // do {
+        //     document.write(num, '<br>');
+        //     num += 1;
+        // } while (num < 11);
+        // break예시
+        // let num = 0;
+        // while (num < 11) {
+        //     num++;
+        //     document.write(num, '<br>');
+        //     if(num > 5){
+        //         break;
+        //     }
+        // } 
+        
+        let num = 0;
+        while (num < 11) {
+            num++;
+            // 5일때만 넘어가고싶어요
+            if(num > 5){
+                continue;
+            }
+            document.write(num, '<br>');
+        }
+    </script>
+</body>
+</html>
