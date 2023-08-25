@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 이벤트 위임용 -->
+    <!-- <article class="parent">
+        <ol>
+            <li><button class="btn-first" type="button">버튼1</button></li>
+            <li><button type="button">버튼2</button></li>
+            <li><button type="button">버튼3</button></li>
+        </ol>
+    </article> -->
+    <!-- 브라우저의 기본동작을 막는 preventDefault용 -->
+    <!-- <a href="https://www.naver.com" class="link">네이버 링크입니다만..</a> -->
+    <form action="#">
+        <button type="submit" class="submit">제출</button>
+    </form>
+    <script>
+        const parent = document.querySelector('.parent');
+        // parent.addEventListener('click', function (event) {
+        //     console.log(event.target);//이벤트 발생 진원지...
+        //     console.log(event.currentTarget);// 이벤트를 받아서 함수를 실행한곳.
+        // })
+        // 이벤트 위임
+        // parent.addEventListener('click', function (event) {
+        //     // 이벤트가 발생한곳의 "텍스트가 버튼1" 이라면
+        //     if (event.target.innerText === "버튼1") {
+        //         console.log(event.target);//이벤트 발생 진원지...
+        //         console.log(event.currentTarget);// 이벤트를 받아서 함수를 실행한곳.
+        //     }
+        //     console.log("이벤트가 발동하긴함...")
+        // })
+        // 브라우저의 기본동작 막기 preventDefault
+        // document.querySelector("a").addEventListener("click",(event)=>{
+        //     event.preventDefault();
+        //     console.log("와 클릭이다~!");
+        // })
+        const $form = document.querySelector("form");
+        $form.addEventListener("submit",(e)=>{
+            console.log(e);
+            e.preventDefault();
+        })
+    </script>
+</body>
+</html>

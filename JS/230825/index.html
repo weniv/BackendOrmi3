@@ -21,7 +21,7 @@
         //     }
         // }
 
-        // 조건문 + break를 사용하여 50보다 작은수만 보여주기
+        // 조건문 + break를 사용하여 각 구구단에서 50보다 작은수만 보여주기
         // for(let i=2; i<10; i++){
         //     for(let j=1; j<10; j++){
         //         if (i*j>50) {
@@ -72,15 +72,46 @@
         //     }
         // } 
         
-        let num = 0;
-        while (num < 11) {
-            num++;
-            // 5일때만 넘어가고싶어요
-            if(num > 5){
-                continue;
-            }
-            document.write(num, '<br>');
-        }
+        // let num = 0;
+        // while (num < 11) {
+        //     num++;
+        //     // 5일때만 넘어가고싶어요
+        //     if(num > 5){
+        //         continue;
+        //     }
+        //     document.write(num, '<br>');
+        // }
+        // 5만 출력 안하는 코드
+        // let num = 0;
+        // while (num < 11) {
+        //     num++;
+        //     if(num === 5){
+        //         continue;
+        //     }
+        //     document.write(num, '<br>');
+        // }
+        
+
+        // 50보다 큰수가 나오면 반복문 완전 종료 작은수만 보여주기
+        // outer: for(let i=2; i<10; i++){
+        //     for(let j=1; j<10; j++){
+        //         if (i*j>50) {
+        //             break outer
+        //         }
+        //         document.write(i*j, '<br>');
+        //     }
+        // }
+
+        // 구구단이 50보다 넘으면 로그출력안하기
+        // outer: for(let i=2; i<10; i++){
+        //     for(let j=1; j<10; j++){
+        //         if (i*j>50) {
+        //             continue outer;
+        //         }
+        //         document.write(i*j, '<br>');
+        //     }
+        //     console.log(i,"단 끝남")
+        // }
     </script>
 </body>
 </html>
