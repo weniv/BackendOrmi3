@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: #000000;
+        transition: 1s;
+
+    }
+    .red{
+        background-color: red;
+        width: 10px;
+        transition: 1s;
+    }
+    img{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body>
+    <ul>
+
+    </ul>
+    <input/>
+    <button>버튼!</button>
+</body>
+<script>
+    const myBtn = document.querySelector("button");
+    const myUl = document.querySelector("ul");
+    const input = document.querySelector("input");
+
+    function addTodo(todo) {
+        const todos = getTodos()
+        todos.push(todo)
+        localStorage.setItem("todos",JSON.stringify(todos))
+    }
+    function getTodos() {
+        const todos = localStorage.getItem("todos")?JSON.parse(localStorage.getItem("todos")):[]
+        return todos
+    }
+    function drawTodo(text) {
+        const myLi = document.createElement('li');
+        const btnDel = document.createElement('button');
+        const btnTxt = document.createTextNode('완료');
+        btnDel.append(btnTxt);
+        btnDel.addEventListener('click', ()=>{
+            myLi.remove();
+        });
+        myLi.append('할일: ',text, btnDel);
+        myUl.appendChild(myLi);
+    }
+    function drawTodos() {
+        const todos = getTodos();
+        todos.forEach(todo => {
+            drawTodo(todo);
+        });
+
+    }
+    drawTodos()
+    myBtn.addEventListener('click', function(){
+        const inputText = input.value;
+        if (!inputText) {
+            return;//이 뒤에있는 코드는 실행되지 않습니다.
+        }
+        input.value = ""
+        addTodo(inputText);
+        myUl.innerHTML = ""
+        drawTodos();
+    });
+</script>
+</html>
