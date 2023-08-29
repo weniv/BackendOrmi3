@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <input type="text">
+            <button type="submit">질문하기!</button>
+        </form>
+        <div class="answer"></div>
+    </div>
+    <script>
+        const $input = document.querySelector('input')
+        const $button = document.querySelector('button')
+        const $answer = document.querySelector('.answer')
+
+        const data = []
+        data.push({
+            "role": "system",
+            "content": "assistant는 점시간 메뉴를 추천해주는 요리사입니다."
+        })
+
+        const url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`
+        
+        $button.addEventListener('click', e => {
+            e.preventDefault()
+            const contents = $input.value
+            data.push({
+                "role": "user",
+                "content": contents
+            })
+            $input.value = ''
+
+            chatGPTAPI()
+        })
+
+        function chatGPTAPI() {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+                redirect: 'follow'
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                // 답변 온 것을 assistant로 저장
+                $answer.innerHTML = `<p>${res.choices[0].message.content}</p>`
+            })
+        }
+    </script>
+</body>
+</html>
