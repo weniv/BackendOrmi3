@@ -1,0 +1,56 @@
+blog
+<h2>1</h2>
+<p>{{db}}</p>
+<p>{{db.1}}</p>
+
+<hr>
+
+<h2>2</h2>
+{% for i in db %}
+    <p>{{i}}</p>
+    <p>{{db.i}}</p>
+{% endfor %}
+
+<hr>
+
+<h2>3</h2>
+{% for i in db.items %}
+    <p>{{i}}</p>
+    <p>{{i.0}}</p>
+    <p>{{i.1}}</p>
+{% endfor %}
+
+<hr>
+
+<h2>4</h2>
+
+{% for key, value in db.items %}
+    <p>{{key}}</p>
+    <p>{{value}}</p>
+{% endfor %}
+
+<h2>5</h2>
+
+{% if 10 == 15 %}
+    <p>if문 안에 있는 구문</p>
+{% endif %}
+
+<h2>6</h2>
+
+<table>
+    <tr>
+        <th>제목</th>
+        <th>내용</th>
+        <th>이미지</th>
+    </tr>
+    {% for key, value in db.items %}
+    {% if value.title %} 
+    {# 특히 위와 같은 if문은 이미지에서 많이 사용합니다. 이미지가 없으면 애러가 나는 경우들이 생깁니다.#}
+    <tr>
+        <td>{{value.title}}</td>
+        <td>{{value.contents}}</td>
+        <td><img width="100" src="{{value.img}}"></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>

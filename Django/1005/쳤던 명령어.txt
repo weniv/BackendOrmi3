@@ -1,0 +1,410 @@
+# 1005 version
+# 동적 url, template tag
+
+파이썬 설치
+폴더 생성
+VSC를 이 폴더 기준으로 열었습니다.
+python --version # 3.12버전으로 최신버전으로 설치되어 있습니다.
+mkdir mysite # mysite라는 폴더를 만듭니다. 꼭  mysite일 필요는 없습니다. 보통 프로젝트 이름입니다.
+cd mysite # mysite로 이동합니다.
+python -m venv venv # 뒤가 이름입니다. 가상환경을 설정합니다.
+
+# 가상환경속으로 들어가기
+.\venv\Scripts\activate # window
+.\venv\Script\activate.bat # window
+source ./venv/bin/activate # mac, linux
+
+# window에서 오류가 뜰 경우
++ CategoryInfo          : 보안 오류: (:) [], PSSecurityException
++ FullyQualifiedErrorId : UnauthorizedAccess
+# 이걸 입력해주세요.
+Set-ExecutionPolicy Unrestricted
+
+pip install django # django를 설치합니다.
+django-admin startproject tutorialdjango . # tutorialdjango라는 프로젝트를 시작합니다.
+python manage.py migrate # DB에 반영하겠다.
+python manage.py runserver
+
+# settings.py에서 접속할 수 있는 사람 설정
+ALLOWED_HOSTS = ['*'] # 28번째 줄에 접속할 수 있는 사람을 모든 사람으로 변경
+
+
+###################################
+python manage.py startapp main
+python manage.py startapp accounts
+python manage.py startapp blog
+
+# 아래 명령어는 안됩니다!
+# python manage.py startapp main accounts blog
+
+# settings.py 에서 33번째 라인 수정
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'main',
+    'accounts',
+    'blog',
+]
+
+###################################
+# urls 기획
+1. (어제 과제) 다음 url이 작동하도록 해주세요.
+1.1 ''
+1.2 'about/'
+1.3 'contact/'
+1.4 'accounts/login'
+1.5 'accounts/logout'
+1.6 'blog/'
+1.7 'blog/1'
+1.8 'blog/2'
+1.9 'blog/3'
+
+###################################
+앱이름: main	views 함수이름	html 파일이름	비고
+''		index		index.html
+'about/'		about
+'contact/'		contact		
+
+앱이름: accounts	views 함수이름	html 파일이름	비고
+'accounts/'	404
+'accounts/login'	login		login.html
+'accounts/logout'	logout		logout.html
+'accounts/<str:s>'	404				login, logout을 제외하고 404로
+
+앱이름: blog	views 함수이름	html 파일이름	비고
+'blog/'		blog		blog.html	
+'blog/<int:pk>'	post		post.html		게시물이 없을 경우에는 404로 연결
+
+###################################
+# urls.py 파일 수정
+# 주석 제거해주세요.
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    path('', include('main.urls')),
+    # path('', index),
+    # path('about/', about),
+    # path('contact/', contact),
+    
+    path('accounts/', include('accounts.urls')),
+    # path('accounts/login', login),
+    # path('accounts/logout', logout),
+
+    path('blog/', include('blog.urls')),
+    # path('blog/', blog),
+    # path('blog/1', blog_1),
+    # path('blog/2', blog_2),
+    # path('blog/3', blog_3),
+
+    # path('testnotice/<int:pk>', testnotice),
+    # path('testlogin/<str:s>', testlogin),
+]
+
+###################################
+# main > urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+]
+
+###################################
+# main > views.py
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'main/index.html')
+
+def about(request):
+    return render(request, 'main/about.html')
+
+def contact(request):
+    return render(request, 'main/contact.html')
+
+# 각 html 파일 생성해주세요!
+# templates > main > index.html ...와 같은 형식입니다.
+
+###################################
+# blog > urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.blog, name='blog'),  # 실제로는 blog/
+    path('<int:pk>/', views.post, name='post'), # 실제로는 blog/1, blog/2, blog/3...
+]
+
+###################################
+# blog > views.py
+from django.shortcuts import render
+
+def blog(request):
+    return render(request, 'blog/blog.html')
+
+def post(request, pk):
+    return render(request, 'blog/post.html')
+
+# 각 html 파일 생성해주세요!
+# templates > blog > blog.html ...와 같은 형식입니다.
+
+###################################
+# accounts > urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('login/', views.login, name='login'), # accounts/login
+    path('logout/', views.logout, name='logout'), # accounts/logout
+]
+###################################
+# accounts > views.py
+from django.shortcuts import render
+
+def login(request):
+    return render(request, 'accounts/login.html')
+
+def logout(request):
+    return render(request, 'accounts/logout.html')
+
+# 각 html 파일 생성해주세요!
+# templates > accounts > login.html ...와 같은 형식입니다.
+
+###################################
+
+python manage.py runserver
+# 모든 url 테스트해봅니다.
+# http://127.0.0.1:8000/about
+# http://127.0.0.1:8000/blog
+# http://127.0.0.1:8000/blog/999
+# http://127.0.0.1:8000/accounts/login/
+
+main > templates > main > index.html
+
+###################################
+###################################
+# 템플릿 태그!
+변수 : {{변수명}}
+python 문법: {% 문법 %}
+###################################
+blog > views.py
+
+from django.shortcuts import render
+
+db = {
+    1: {
+        'title': '제목 1', 
+        'contents': 'Post 1 body', 
+        'img': 'https://picsum.photos/200/300'
+        },
+    2: {
+        'title': '제목 2', 
+        'contents': 'Post 2 body', 
+        'img': 'https://picsum.photos/200/300'
+        },
+    3: {
+        'title': '제목 3', 
+        'contents': 'Post 3 body', 
+        'img': 'https://picsum.photos/200/300'
+        },
+    'i': {
+        'hello'
+    }
+}
+
+def blog(request):
+    # db = Cafe.objects.all()
+    return render(request, 'blog/blog.html', {'db': db})
+
+def post(request, pk):
+    # db = Cafe.objects.get(pk=pk)
+    if db.get(pk):
+        return render(request, 'blog/post.html', {'post': db.get(pk)})
+
+def bookinfo(request):
+    '''
+    교육용 크롤링 페이지입니다.
+    '''
+    return render(request, 'blog/bookinfo.html')
+###################################
+# blog > blog.html
+
+blog
+<h2>1</h2>
+<p>{{db}}</p>
+<p>{{db.1}}</p>
+
+<hr>
+
+<h2>2</h2>
+{% for i in db %}
+    <p>{{i}}</p>
+    <p>{{db.i}}</p>
+{% endfor %}
+
+<hr>
+
+<h2>3</h2>
+{% for i in db.items %}
+    <p>{{i}}</p>
+    <p>{{i.0}}</p>
+    <p>{{i.1}}</p>
+{% endfor %}
+
+<hr>
+
+<h2>4</h2>
+
+{% for key, value in db.items %}
+    <p>{{key}}</p>
+    <p>{{value}}</p>
+{% endfor %}
+
+<h2>5</h2>
+
+{% if 10 == 15 %}
+    <p>if문 안에 있는 구문</p>
+{% endif %}
+
+<h2>6</h2>
+
+<table>
+    <tr>
+        <th>제목</th>
+        <th>내용</th>
+        <th>이미지</th>
+    </tr>
+    {% for key, value in db.items %}
+    {% if value.title %} 
+    {# 특히 위와 같은 if문은 이미지에서 많이 사용합니다. 이미지가 없으면 애러가 나는 경우들이 생깁니다.#}
+    <tr>
+        <td>{{value.title}}</td>
+        <td>{{value.contents}}</td>
+        <td><img width="100" src="{{value.img}}"></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+###################################
+# blog > post.html
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.contents }}</p>
+    <img src="{{ post.img }}" alt="">
+
+    <!-- 이거 다 Django에서 잘 사용하지 않는 패턴입니다. -->
+    <!-- <a href="./blog">홈으로 가기</a> -->
+    <!-- <a href="http://127.0.0.1:8000/blog">홈으로 가기</a> -->
+    <!-- <a href="../">홈으로 가기</a> -->
+    <!-- <a href="../../">홈으로 가기</a> -->
+    <!-- http://127.0.0.1:8000/blog/1/../../ -->
+    <!-- ../ directory traversal attack입니다. -->
+
+    <a href="{% url 'blog' %}">홈으로 가기</a>
+
+    <script>
+        let imgSrc = "{{ post.img }}"
+    </script>
+</body>
+</html>
+###################################
+# blog > views.py 수정
+# HttpResponse 추가!
+from django.shortcuts import render
+from django.http import HttpResponse
+
+db = {
+    1: {
+        'title': '제목 1', 
+        'contents': 'Post 1 body', 
+        'img': 'https://picsum.photos/200/300'
+        },
+    2: {
+        'title': '제목 2', 
+        'contents': 'Post 2 body', 
+        'img': 'https://picsum.photos/200/300'
+        },
+    3: {
+        'title': '제목 3', 
+        'contents': 'Post 3 body', 
+        'img': 'https://picsum.photos/200/300'
+        },
+    'i': {
+        'hello'
+    }
+}
+
+def blog(request):
+    # db = Cafe.objects.all()
+    return render(request, 'blog/blog.html', {'db': db})
+
+def post(request, pk):
+    # db = Cafe.objects.get(pk=pk)
+    if db.get(pk):
+        return render(request, 'blog/post.html', {'post': db.get(pk)})
+    else:
+        return HttpResponse('잘못된 접근입니다!')
+
+
+def bookinfo(request):
+    '''
+    교육용 크롤링 페이지입니다.
+    '''
+    return render(request, 'blog/bookinfo.html')
+
+
+####################################
+# 크롤링할 bookinfo url 추가
+# blog > urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.blog, name='blog'),  # 실제로는 blog/
+    path('<int:pk>/', views.post, name='post'), # 실제로는 blog/1, blog/2, blog/3...
+    path('bookinfo/', views.bookinfo, name='bookinfo'),
+]
+
+####################################
+# blog > views.py > bookinfo 함수만 수정할겁니다.
+# venv 붙었는지 꼭 확인하세요!
+# pip install requests
+# pip install bs4
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from requests
+from bs4 import BeautifulSoup
+
+... 생략 ...
+
+def bookinfo(request):
+    '''
+    교육용 크롤링 페이지입니다.
+    '''
+    url = 'https://paullab.co.kr/bookservice/'
+    response = requests.get(url)
+    html = response.text
+    soup = BeautifulSoup(html, 'html.parser')
+    result = [f'<p>{i.text}</p>' for i in soup.select('.book_name')]
+    return HttpResponse(result)

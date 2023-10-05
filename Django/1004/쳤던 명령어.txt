@@ -1,0 +1,66 @@
+파이썬 설치
+폴더 생성
+VSC를 이 폴더 기준으로 열었습니다.
+python --version # 3.11버전으로 최신버전으로 설치되어 있습니다.
+mkdir mysite # mysite라는 폴더를 만듭니다. 꼭  mysite일 필요는 없습니다. 보통 프로젝트 이름입니다.
+cd mysite # mysite로 이동합니다.
+python -m venv venv # 뒤가 이름입니다. 가상환경을 설정합니다.
+
+# 가상환경속으로 들어가기
+.\venv\Scripts\activate # window
+.\venv\Script\activate.bat # window
+source ./venv/bin/activate # mac, linux
+
+# window에서 오류가 뜰 경우
++ CategoryInfo          : 보안 오류: (:) [], PSSecurityException
++ FullyQualifiedErrorId : UnauthorizedAccess
+# 이걸 입력해주세요.
+Set-ExecutionPolicy Unrestricted
+
+pip install django # django를 설치합니다.
+django-admin startproject tutorialdjango . # tutorialdjango라는 프로젝트를 시작합니다.
+python manage.py migrate # DB에 반영하겠다.
+python manage.py runserver
+
+# settings.py에서 접속할 수 있는 사람 설정
+ALLOWED_HOSTS = ['*'] # 28번째 줄에 접속할 수 있는 사람을 모든 사람으로 변경
+
+
+###################################
+python manage.py startapp main
+
+# settings.py 에서 33번째 라인 수정
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'main',
+]
+
+###################################
+# urls.py 파일 수정
+# 주석 제거해주세요.
+
+from django.contrib import admin
+from django.urls import path
+from main.views import index
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', index),
+]
+
+###################################
+# views.py 파일 수정
+# 주석 제거해주세요.
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')
+
+###################################
+# main > templates > index.html
+# <h1>hello world</h1>
