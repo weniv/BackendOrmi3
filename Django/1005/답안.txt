@@ -1,0 +1,19 @@
+앱이름: main	views 함수이름	html 파일이름
+''		'index'		'index.html'
+'about/'		'about'		'about.html'
+'contact/'		'contact'		'contact.html'
+
+앱이름: qna 	views 함수이름	html 파일이름
+'qna/'		'qna'		'qna.html'
+'qna/<int:pk>'	'qna_post'	'qna_post.html'
+
+앱이름: product	views 함수이름	html 파일이름
+'product/'		'product'		'product.html'
+'product/<int:pk>'	'product_post'	'product_post.html'    
+
+앱이름: notice		views 함수이름	html 파일이름
+'notice/'			'notice_index'	'notice_index.html'
+'notice/free'		'free'		'free.html
+'notice/free/<int:pk>'	'free_post'	'free_post.html'        
+'notice/onenone'		'onenone'		'onenone.html'
+'notice/onenone/<int:pk'>	'onenone_post'	'onenone_post.html'

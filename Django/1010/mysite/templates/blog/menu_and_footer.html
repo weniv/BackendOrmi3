@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+</head>
+<body>
+    <h1>블로그 페이지 입니다.</h1>
+    <p>위인의 블로그 페이지입니다.</p>
+    <ul>
+        <li>main</li>
+        <li>about</li>
+        <li>contact</li>
+        <li>blog</li>
+    </ul>
+
+    {% block content %}
+    {% endblock %}
+
+    <hr>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id unde dignissimos sit corporis quas quibusdam ipsa error nobis, {% block licat %}{% endblock %}nesciunt tenetur sequi consectetur aliquid veniam autem nihil, labore, iusto in aspernatur.</p>
+
+    {% block binky %}
+    {% endblock %}
+
+    <footer>
+        <p>이 블로그의 저작권은 각 위인에게 있습니다.</p>
+    </footer>
+
+    <script>
+        {% block mura %}
+        {% endblock %}
+    </script>
+</body>
+</html>
