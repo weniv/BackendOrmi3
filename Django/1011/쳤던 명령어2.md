@@ -1,0 +1,241 @@
+# 목표
+3. 데이터 업로드 및 이미지 업로드
+4. 웹 서비스를 하나 만들어 검색이 가능하게 하겠습니다.
+
+# 명령어
+```
+mkdir mysite
+cd mysite
+python -m venv venv
+
+# 가상환경속으로 들어가기
+.\venv\Scripts\activate # window
+.\venv\Script\activate.bat # window
+source ./venv/bin/activate # mac, linux
+
+pip install django
+django-admin startproject tutorialdjango .
+python manage.py migrate
+
+# settings.py에서 접속할 수 있는 사람 설정
+ALLOWED_HOSTS = ['*'] # 28번째 줄에 접속할 수 있는 사람을 모든 사람으로 변경
+
+python manage.py startapp blog
+
+# settings.py 에서 33번째 라인 수정
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'blog',
+]
+
+###################################
+# urls 기획
+1. 다음 url이 실제 작동하도록 해주세요.
+1.1 'blog/'
+1.2 'blog/<int:pk>'
+
+###################################
+앱이름: blog    views 함수이름   html 파일이름  비고
+'blog/'         blog            blog.html	
+'blog/<int:pk>' post            post.html
+'blog/<int:pk>' test            test.html
+
+* test라는 이름 자체를 사용하지 않기를 권합니다.
+
+###################################
+# tutorialdjango > urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
+]
+
+###################################
+# blog > urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.blog, name='blog'),
+    path('<int:pk>/', views.post, name='post'),
+]
+
+###################################
+# blog > views.py
+from django.shortcuts import render
+
+def blog(request):
+    return render(request, 'blog/blog.html')
+
+def post(request, pk):
+    return render(request, 'blog/post.html')
+
+# 간소화를 위해 blog > templates > blog > blog.html
+# 간소화를 위해 blog > templates > blog > post.html
+
+###################################
+# blog > models.py
+# django models fields
+# https://docs.djangoproject.com/en/4.2/ref/models/fields/
+# pip install pillow
+# pillow는 이미지 관련 라이브러리입니다.
+# 매우 많은 프레임웤이나 라이브러리가 이 라이브러리를 사용합니다.
+# 이미지를 자르거나, 확대하거나, 축소하거나, 저장하거나 등이 사용됩니다.
+
+from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    contents = models.TextField()
+    # main_image = models.ImageField(upload_to='blog/', blank=True, null=True) # upload_to='blog/' : blog 폴더 안에 저장
+    main_image = models.ImageField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+* blank=True는 '이 필드는 필수가 아니다'라는 내용입니다.
+* null=True는 '이 필드는 새로 생성되어도 DB 비어있어도 된다.'
+1번게시물 - 이미지 없음
+2번게시물 - 이미지 없음
+3번게시물 => main_image 필드 추가, 그러면 1번게시물? 2번게시물?은 어떻게 하죠?
+-> django가 입력을 하라고 얘기를 합니다. 입력을 거기서 해줍니다.
+-> null=True를 주셔서 이전 게시물이 비어있어도 된다라고 명시해줍니다.
+
+###################################
+
+python manage.py makemigrations
+python manage.py migrate
+
+###################################
+# admin.py
+from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)
+
+###################################
+python manage.py createsuperuser
+
+leehojun
+leehojun@gmail.com
+이호준123!@
+
+###################################
+이미지가 실제 저장될 폴더 설정입니다.
+settings.py에 맨 마지막 줄에 추가해주세요.
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+###################################
+
+이미지까지 업로드 한 게시물 3개 작성
+
+=> 이미지를 클릭해보면 이미지가 안나옵니다?
+
+파일이 저장되었는지 확인
+=> a.jpg만 3개 올렸는데 아래처럼 저장되었습니다.
+=> media/a.jpg
+=> media/a_난수.jpg
+=> media/a_난수.jpg
+
+###################################
+# tutorialdjango > urls.py
+from django.contrib import admin
+from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+###################################
+# blog > views.py
+
+from django.shortcuts import render
+from .models import Post
+
+def blog(request):
+    db = Post.objects.all()
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/blog.html', context)
+
+def post(request, pk):
+    db = Post.objects.get(pk=pk)
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/post.html', context)
+
+###################################
+# tamplates > blog > post.html
+
+<h1>게시판</h1>
+<p>{{db.title}}</p>
+<p>{{db.contents}}</p>
+<p>{{db.updated_at}}</p>
+{% if db.main_image %}
+<!-- db.main_image.url: /media/a.jpg -->
+<!-- db.main_image.url: /media/blog/2310/11/a.jpg와 같이 저장합니다. -->
+<img src="{{ db.main_image.url }}" alt="">
+{% endif %}
+<a href="{% url 'blog' %}">뒤로가기</a>
+<p>{{db.main_image}}</p> 
+<!-- db.main_image: a.jpg -->
+
+
+###################################
+# tamplates > blog > blog.html
+<h1>게시판</h1>
+<form action="" method="get">
+    <input name="q" type="search">
+    <button type="submit">검색</button>
+</form>
+<ul>
+    {% for post_detail in db %}
+    <li>
+        <a href="{% url 'post' post_detail.id %}">{{ post_detail.title }}</a>
+        <p>{{post_detail.contents}}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+
+###################################
+# blog > views.py
+from django.shortcuts import render
+from .models import Post
+from django.db.models import Q
+
+def blog(request):
+    if request.GET.get('q'):
+        q = request.GET.get('q')
+        db = Post.objects.filter(Q(title__icontains=q) | Q(contents__icontains=q)).distinct()
+    else:
+        db = Post.objects.all()
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/blog.html', context)
+
+def post(request, pk):
+    db = Post.objects.get(pk=pk)
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/post.html', context)
