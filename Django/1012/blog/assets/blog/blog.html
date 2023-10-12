@@ -1,0 +1,13 @@
+<h1>게시판</h1>
+<ul>
+    {% for post_detail in db %}
+    <li>
+        <a href="{% url 'post' post_detail.id %}">{{ post_detail.title }}</a>
+        <p>{{post_detail.contents}}</p>
+    </li>
+    {% endfor %}
+</ul>
+<!-- 로그인한 사용자만 글 작성 버튼이 활성화 -->
+{% if user.is_authenticated %}
+<a href="{% url 'create' %}">글 작성</a>
+{% endif %}
