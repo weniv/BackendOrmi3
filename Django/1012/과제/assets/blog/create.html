@@ -1,0 +1,10 @@
+{% if user.is_authenticated %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+{% else %}
+<p>로그인 사용자 아님!</p>
+<a href="{% url 'blog' %}">뒤로가기</a>
+{% endif %}
