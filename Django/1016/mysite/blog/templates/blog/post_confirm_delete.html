@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    <p>"{{ object.title }}" 글을 정말 삭제하시겠습니까?</p>
+    <p><a href="{% url 'postdetail' object.pk %}">취소</a></p>
+    <button type="submit">네</button>
+</form>
