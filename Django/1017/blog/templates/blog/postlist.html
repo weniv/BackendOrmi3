@@ -1,12 +1,16 @@
 {% for i in posts %}
-    <p>{{i.id}}</p>
-    <p>{{i.title}}</p>
-    <p>대문자: {{i.content|upper}}</p>
-    <p>소문자: {{i.content|lower}}</p>
-    <p>줄바꿈 안함: {{i.content}}</p>
-    <p>줄바꿈: {{i.content|linebreaks}}</p>
+    <h1>{{ i.title }}</h1>
+    <p>{{ i.content }}</p>
+    <p>{{ i.author }}</p>
+    <!-- 필드에 없어도 1:N으로 연결되었으면 1쪽에서 접근 가능합니다. -->
+    <!-- 그렇지만 아래처럼 접근하면 None입니다! 이유는 comments 전체를 로딩할 수가 없습니다. -->
+    <p>{{ i.comments }}</p>
+    <p>{{ i.tags }}</p>
+    {% for comment in i.comments.all %}
+        <p>{{ comment.message }}</p>
+    {% endfor %}
+    {% for tag in i.tags.all %}
+        <p>{{ tag.name }}</p>
+    {% endfor %}
     <hr>
 {% endfor %}
-
-찬양님 팁
-{% lorem 1 b random %}
