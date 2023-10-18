@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+{{ title }} | Licat Site
+{% endblock %}
+
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Licat Site Test</a></h1>
+{% endblock %}
+
+
+{% block messages %}
+{% if messages %}
+    <ul class="messagelist">{% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}</ul>
+{% endif %}
+{% endblock messages %}
+
+
+{% block nav-global %}
+{% endblock %}
+
+
+{% block sidebar %}
+<div class="module">
+    <h2>My Sidebar</h2>
+    <ul>
+        <li><a href="#">Licat Link 1</a></li>
+        <li><a href="#">Licat Link 2</a></li>
+        <li><a href="#">Licat Link 3</a></li>
+    </ul>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+<div id="footer">Licat Hello World Test!!</div>
+{% endblock %}
