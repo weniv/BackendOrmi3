@@ -105,7 +105,8 @@
         <script>
             // query string중 page값을 받아오는 함수
             let pagenum = window.location.href.split('?')[1].split('=')[1]
-            fetch(`http://127.0.0.1:8000/blog/${pagenum}`)
+            // cors error를 해결하는 코드
+            fetch(`http://127.0.0.1:8000/blog/1`)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
@@ -116,7 +117,6 @@
                 document.querySelector('.post-date-data').innerHTML = data.created_at
                 document.querySelector('.post-content-data').innerHTML = data.content
             })
-
         </script>
     </body>
 </html>
