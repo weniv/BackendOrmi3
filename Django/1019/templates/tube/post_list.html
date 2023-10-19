@@ -1,0 +1,16 @@
+<h1>Post List</h1>
+<!-- 검색 기능 추가 -->
+<form action="" method="GET">
+    <input type="text" name="q" value="{{ request.GET.q }}">
+    <input type="submit" value="검색">
+</form>
+<ul>
+    {% for post in post_list %}
+    <li>
+        <a href="{% url 'tube:post_detail' post.pk %}">
+            {{ post.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'tube:post_new' %}">업로드</a>

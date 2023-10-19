@@ -1,0 +1,34 @@
+<p>{{object.title}}</p>
+<p>{{object.content}}</p>
+
+<p>{{post.title}}</p>
+<p>{{post.content}}</p>
+<p>조회수 : {{post.view_count}}</p>
+{% if post.file_upload %}
+<video src="{{post.file_upload.url}}" controls></video>
+{% endif %}
+
+<hr>
+<section>
+    <h3>댓글</h3>
+    {% for comment in post.comments.all %}
+        <p>{{comment.message}}</p>
+        <p>{{comment.author}}</p>
+        <p>{{comment.updated_at}}</p>
+    {% endfor %}
+</section>
+
+<section>
+    <h3>댓글 작성</h3>
+    <form action="{% url 'tube:comment_new' post.pk %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" value="댓글 작성">
+    </form>
+</section>
+
+<a href="{% url 'tube:post_list' %}">목록</a>
+{% if user == post.author %}
+<a href="{% url 'tube:post_edit' post.pk %}">수정</a>
+<a href="{% url 'tube:post_delete' post.pk %}">삭제</a>
+{% endif %}
