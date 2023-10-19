@@ -10,6 +10,13 @@
 
 <hr>
 <section>
+    <h3>태그</h3>
+    {% for tag in post.tags.all %}
+        <p>{{tag.name}}</p>
+    {% endfor %}
+</section>
+
+<section>
     <h3>댓글</h3>
     {% for comment in post.comments.all %}
         <p>{{comment.message}}</p>

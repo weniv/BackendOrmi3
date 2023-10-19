@@ -5,7 +5,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         # fields = '__all__'
-        fields = ['title', 'content', 'thumb_image', 'file_upload'] # counter같은 값은 건들면 안되니까!
+        fields = ['title', 'content', 'thumb_image', 'file_upload', 'tags'] # counter같은 값은 건들면 안되니까!
 
 
 class CommentForm(forms.ModelForm):
