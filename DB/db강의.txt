@@ -1,0 +1,532 @@
+SELECT * FROM student;
+SELECT 학번, 이름, 학과 FROM student;
+SELECT 학번 as a, 이름 as b, 학과 as c FROM student;
+SELECT 1+1;
+SELECT (10 + 2) / 2;
+SELECT 학과번호 FROM subject;
+SELECT DISTINCT 학과번호 FROM subject;
+SELECT 학번, 학년, 이름 FROM student ORDER BY 학년 DESC;
+SELECT 학번, 학년, 이름 FROM student ORDER BY 학년 ASC;
+SELECT 학번, 학년, 이름 FROM student ORDER BY 학번 ASC;
+SELECT 학번, 이름 AS 성명, 연락처 AS 휴대폰번호 FROM student;
+SELECT 연도, 금액 + 500000 FROM tuition;
+
+시나리오:
+2018년도부터 2024년까지 수업비에 10%를 돌려드리기로 했습니다. 의사결정권자가 데이터를 볼 수 있도록 query를 만들어보세요.
+SELECT 연도, 금액, 금액*0.9 AS 할인된금액, 금액*0.1 AS 환급금 FROM tuition;
+SELECT 연도, 금액, 금액 + 금액 as 연산된_수업비 FROM tuition;
+SELECT 연도, 금액, 금액 - 금액 as 연산된_수업비 FROM tuition;
+SELECT 연도, 금액, 금액 / 금액 as 연산된_수업비 FROM tuition;
+SELECT 연도, 금액, 금액 * 금액 as 연산된_수업비 FROM tuition;
+
+실무:
+S그룹 해킹공격이 하루 10만건 정도 됩니다. 10만건을 오전에 7시 30분에 상사에게 정리된 형태의 보고서(엑셀)를 올려야 합니다. 그 전에는 수기로 4명이 밤을 샜습니다.
+* SQL -> 항목 별로 묶고 -> CSV -> 데이터를 필터링해서 엑셀로 옮깁니다. -> 보고서 형태로 작성
+* SQL(새벽 4시 => 6시쯤 뽑힙니다) -> CSV(엑셀로 안뽑혀요. CSV로 뽑아야 합니다.) -> 엑셀라이터(python 라이브러리)를 사용해서 보고서 형태로 작성(그래프 + 보고서 형태 + 각종 통계)
+
+https://youtu.be/JBpXDx2oojk
+엑셀라이터 쿠폰 필요
+
+
+SELECT '이름: '|| 이름 || ', 학과: ' || 학과 as 개인정보 FROM student;
+SELECT 과목명 || ' 과목은 ' || 학과번호 || '에서 ' || 이수구분 || '과목으로 분류되어 있습니다.' FROM subject;
+
+
+SELECT 1 AND 0;
+SELECT 1 OR 0;
+SELECT NOT 0;
+
+# and, or 실습
+
+SELECT *
+FROM student
+WHERE 학번 LIKE '2019%'
+AND 마일리지 >= 100;
+
+SELECT *
+FROM student
+WHERE 마일리지 >= 100
+AND NOT (학번 LIKE '2019%' OR 학번 LIKE '2020%');
+
+SELECT *
+FROM student
+WHERE 학과 <> 컴퓨터공학과;
+
+# between(해당 조건 값을 포함합니다.)
+SELECT 학번, 1학년1학기
+FROM grade
+
+SELECT 학번, 1학년1학기
+FROM grade
+WHERE 1학년1학기 BETWEEN 3.0 AND 4.0;
+
+
+# 연습문제
+1학년1학기 ~ 2학년2학기까지 모두 3.0 ~ 4.0을 받은사람
+
+SELECT 학번, 1학년1학기, 1학년2학기, 2학년1학기, 2학년2학기
+FROM grade
+WHERE (일학년일학기 BETWEEN 3.0 AND 4.0) 
+AND (일학년이학기 BETWEEN 3.0 AND 4.0)
+AND (이학년일학기 BETWEEN 3.0 AND 4.0) 
+AND (이학년이학기 BETWEEN 3.0 AND 4.0);
+
+# IN은 일치 항목입니다.
+SELECT 학번, 이름, 학과
+FROM student
+WHERE 학과 IN ('물리학과', '화학과');
+
+# LIKE 연산 + 와일드카드
+* %는 모든문자랑 매핑되고 여러개의 문자를 나타냅니다.
+SELECT 학년, 이름, 지도교수
+FROM student
+WHERE 지도교수 LIKE '이%';
+
+* _는 모든문자랑 매핑되고 단 한개의 문자를 나타냅니다.
+SELECT 학년, 이름, 연락처, 지도교수
+FROM student
+WHERE 지도교수 LIKE '이__';
+
+
+SELECT 학번, 이름, 학과, 생년월일
+FROM student
+WHERE 생년월일 LIKE '%-04-%';
+
+
+SELECT 학과번호, 과목명, 이수구분
+FROM subject
+WHERE 이수구분 LIKE '%양';
+
+
+SELECT *
+FROM scholarship
+WHERE 성적장학금 IS NULL;
+
+# 문제
+SELECT 학과번호, 과목명, 이수구분
+FROM subject
+
+
+# 연습문제
+교양을 제외하고 과목명만 
+중복없이 
+과목번호를 내림차순으로 정렬하는 SQL query문을 작성해주세요.
+
+select *
+from subject
+where NOT (이수구분 LIKE '교양')
+order by 과목번호 desc;
+
+SELECT 과목번호, 과목명
+FROM subject
+WHERE 이수구분 != '교양'
+ORDER BY 과목번호 DESC;
+
+SELECT distinct 과목번호, 과목명, 이수구분 from subject
+where 이수구분 not in ('교양')
+order by 과목번호 desc
+
+
+# WHERE : 데이터를 검색, 갱신, 삭제할 때 특정 데이터에 대한 조건을 설정할 때 사용하는 구문
+SELECT 학년, 이름, 연락처
+FROM student
+WHERE 학년 >= 3;
+
+# INSERT: 기존 테이블에 행을 삽입할 때 사용하는 구문
+
+# OK(항목을 지정할 수 있다! 다만 null을 허락하지 않는 항목이 있으면 error)
+INSERT INTO professor (이름, 학과, 이메일)
+VALUES ('김물리', '물리학과', 'asdf123@sqool.ac.kr');
+
+# 안됨
+INSERT INTO professor VALUES ('이호준', '컴퓨터공학과', 'asdf123@sqool.ac.kr');
+
+# OK
+INSERT INTO professor 
+VALUES ('A022', '이호준', '컴퓨터공학과', 'h2hyun@sqool.ac.kr', '065-728-0019', '1983-01-25', '진리관 207호');
+SELECT * from professor
+
+
+# 연습문제 풀이
+# 4학년 학생이면서 주소가 서울인경우
+SELECT *
+FROM student
+WHERE 학년=4 AND 주소 LIKE '서울%';
+
+# 2학년 1학기 점수가 null인경우
+/* SELECT * FROM grade WHERE 2학년1학기=''; */
+SELECT *
+FROM grade
+WHERE 2학년1학기 IS NULL;
+
+# 컴퓨터공학과의 전필 과목을 구하는 쿼리문을 작성해주세요.
+SELECT *
+FROM subject
+WHERE 학과번호='컴퓨터공학과' AND 이수구분='전필';
+
+
+# UPDATE
+UPDATE [테이블명]
+SET [컬럼='변경할값'], [컬럼='변경할값'], ...
+WHERE [조건];
+
+select * from student WHERE 학번=201900001;
+
+UPDATE student
+SET 이름='이호준', 학과='컴퓨터공학과'
+WHERE 학번=201900001;
+
+select * from student WHERE 학번=201900001;
+
+# delete 명령어
+delete, drop 이런 명령어는 치기 전에 선임에 허락을 구하세요.
+
+DELETE FROM student
+DELETE FROM student WHERE 학번=201900001;
+DELETE FROM student WHERE 학년=4;
+
+SELECT * FROM student
+LIMIT 3;
+
+# 찬양님 질문
+DB에서 varchar, varchar2, text 타입이 다른점
+sqlite3
+postgresql
+mysql
+
+# Create
+CREATE TABLE [테이블명](
+[컬럼명] [데이터타입] [조건]
+[컬럼명] [데이터타입] [조건]
+...
+[컬럼명] [데이터타입] [조건]);
+
+CREATE TABLE 제품 (
+제품번호 INT PRIMARY KEY,
+제품이름 VARCHAR NOT NULL,
+가격 INT DEFAULT 0);
+
+INSERT INTO 제품 (제품번호, 제품이름, 가격)
+VALUES (1, '버그잡는 개리씨 키링', 12500);
+
+INSERT INTO 제품 (제품번호, 제품이름, 가격)
+VALUES (2, '딥러닝 개발자 무릎 담요', 17500);
+
+INSERT INTO 제품 (제품번호, 제품이름, 가격)
+VALUES (3, '개발자 노트북 파우치', 36000);
+
+select * from 제품;
+
+DELETE FROM 제품 WHERE 제품번호=1;
+
+select * from 제품;
+
+DROP TABLE 제품;
+
+
+
+mysql> SHOW databases;
+mysql> DESC table_name;
+
+
+# sql 함수
+SUBSTR('hello world', 1, 5) → 'hello' : 원하는 문자를 잘라내어 추출하거나, 문자열의 일부가 필요한 경우 사용
+REPLACE('hello world', 'world', 'SQL') → 'hello SQL' : 바꾸고 싶은 값으로 대상 값을 교체
+LENGTH('hello') → 5 : 문자열의 길이를 출력
+COUNT : 전체 컬럼, 혹은 특정 컬럼의 행의 개수를 출력
+ROUND(반올림할 숫자, 자릿수)
+통계 함수 : MAX(), MIN(), SUM(), AVG()
+
+
+SELECT DATE();
+SELECT TIME();
+SELECT DATETIME();
+
+
+SELECT STRFTIME('%Y-%m-%d %H:%M:%S', 'now');
+SELECT STRFTIME('%Y#%m#%d %H@%M@%S', 'now');
+
+
+SELECT 주소 AS 주소 FROM student => 서울특별시 성북구
+SELECT SUBSTR(주소, 1, 2) AS 주소 FROM student; => 서울
+SELECT SUBSTR(주소, 1, 3) AS 주소 FROM student; => 서울특
+
+
+javascript에 substr과 다른점은 end에 -1를 하지 않습니다.
+python에 슬라이싱과 다른점은 end에 -1을 하지 않습니다.
+
+
+SELECT REPLACE('Hello world', 'world', 'SQL');
+SELECT REPLACE(주소, '서울', '제주') AS 바뀐주소 FROM student;
+
+
+SELECT COUNT(*) FROM student;
+
+
+https://www.w3schools.com/sql/default.asp
+
+
+SELECT 이름, LENGTH(이름) AS 이름길이 FROM student;
+
+# max, min, sum, avg
+SELECT 학번, MAX(1학년1학기) AS '1학년 1등' FROM grade;
+SELECT MIN(성적장학금) AS '성적장학금 최소 수령액' FROM scholarship;
+SELECT SUM(성적장학금) AS '성적장학금 총액' FROM scholarship;
+SELECT AVG(1학년1학기) AS '평균 성적' FROM grade;
+
+
+# 연습문제
+1. 중복을 제거하고 서울, 경기, 부산 등 지역별로 몇 개의 지역이 있는지 출력해주세요. '도'를 기준으로 합니다.(서울, 제주, 강원, 경기, 경상, 경상, 전라, 전라, 충청, 충청)
+2. 이 학교에 학년에 평균을 구해주세요.((1학년 1학기 + 1학년 2학기) / 2 = 1학년 평균)
+3. 성함에 성씨가 각각 몇 분이 있는지 출력해주세요.
+4. 전화번호는 뒤에 4자리만 출력하게 해주세요.(비식별화)
+
+
+SELECT DISTINCT SUBSTR(주소, 1, 2) AS 도 FROM student
+SELECT COUNT(DISTINCT SUBSTR(주소, 1, 2)) AS 도 FROM student
+SELECT DISTINCT SUBSTR(주소, 1, 2) AS 도 FROM student WHERE SUBSTR(주소, 1, 2) != '대구';
+SELECT DISTINCT SUBSTR(주소, 1, 2) AS 도 FROM student WHERE SUBSTR(주소, 1, 2) in ('서울', '경기');
+
+/* (서울, 제주, 강원, 경기, 경상, 경상, 전라, 전라, 충청, 충청) */
+
+SELECT COUNT(DISTINCT SUBSTR(주소, 1, 2)) AS 도 FROM student WHERE SUBSTR(주소, 1, 2) in ('서울', '경기', '제주');
+
+SELECT AVG(학년) FROM student
+SELECT avg(1학년1학기 + 1학년2학기) as '1학년_평균',
+avg(2학년1학기 + 2학년2학기) as '2학년_평균',
+avg(3학년1학기 + 3학년2학기) as '3학년_평균',
+avg(4학년1학기 + 4학년2학기) as '4학년_평균'
+FROM grade
+
+SELECT DISTINCT SUBSTR(이름, 1, 1) AS 성씨 FROM student
+SELECT COUNT(DISTINCT SUBSTR(이름, 1, 1)) AS 성씨 FROM student
+
+SELECT REPLACE(연락처, SUBSTR(연락처, 0, 10), '***-****-') FROM student
+SELECT '***-****-' || SUBSTR(연락처, -4) FROM student;
+
+
+# 스피드퀴즈
+student에 이름 뒤에 2글자를 이** 이렇게 출력되게 해주세요. 이름이 4자인 경우 이호** 이렇게 출력되어야 합니다.
+SELECT REPLACE(이름, SUBSTR(이름, 2), '**') as name FROM student;
+SELECT REPLACE(이름, SUBSTR(이름, -2), '**') AS '이름 비식별화' FROM student;
+/* 뒤에 답은 이름이 두글자인 분은 **로 나오게 됩니다. */
+
+
+# 스피드퀴즈
+학번이 2019학번이면서 4학년인 학생의 목록을 뽑아주세요.
+SELECT 학번, 학년 FROM student WHERE 학번 LIKE '2019%' AND 학년 is 4;
+SELECT 학번, 학년 FROM student WHERE 학번 LIKE '2019%' AND 학년 = 4;
+
+# 스피드퀴즈
+교수항목에서 나이가 40살 이상이신 분들의 목록을 뽑아주세요.
+SELECT 이름, 2023 - SUBSTR(생년월일, 1, 4) AS 나이 FROM professor
+
+SELECT 이름, 2023 - SUBSTR(생년월일, 1, 4) AS 나이 FROM professor WHERE 2023 - SUBSTR(생년월일, 1, 4) >= 40
+
+SELECT 이름, 생년월일, strftime('%Y', 'now') - strftime('%Y', 생년월일) as 나이
+FROM professor
+WHERE strftime('%Y', 'now') - strftime('%Y', 생년월일) >= 40;
+
+select *
+from professor
+where date('now') - (생년월일) > 40
+
+# 스피드퀴즈
+grade 항목에서 학생들의 학점 총점을 구해주세요. 여유가 된다면 평균을 구해주세요.
+
+SELECT sum(1학년1학기) + sum(1학년2학기) + sum(2학년1학기) + sum(2학년2학기)
++ sum(3학년1학기) + sum(3학년2학기) + sum(4학년1학기) + sum(4학년2학기) AS '전체 학점 총점', 
+(AVG(1학년1학기) + AVG(1학년2학기) + AVG(2학년1학기) + AVG(2학년2학기)
++ AVG(3학년1학기) + AVG(3학년2학기) + AVG(4학년1학기) + AVG(4학년2학기)) / 8 AS '전체 학점 평균'
+FROM grade;
+
+/* 중간에 null 값이면 연산이 안됩니다! */
+SELECT 학번,
+1학년1학기 + 1학년2학기 + 2학년1학기 + 2학년2학기 + 3학년1학기 + 3학년2학기 + 4학년1학기 + 4학년2학기 AS 총점,
+(1학년1학기 + 1학년2학기 + 2학년1학기 + 2학년2학기 + 3학년1학기 + 3학년2학기 + 4학년1학기 + 4학년2학기)/8 AS 평균
+FROM grade
+
+
+# 조건문
+SELECT [컬럼명]
+CASE
+    WHEN [조건1] THEN [결과1]
+    WHEN [조건2] THEN [결과2]
+    ELSE [결과3]
+END [결과를 타나낼 컬럼명]
+FROM [테이블명]
+
+
+SELECT 학과번호, 과목명, 이수구분,
+CASE
+    WHEN 이수구분 = '전필' THEN '전공 필수과목'
+END AS '전공 필수 및 선택 구분'
+FROM SUBJECT;
+
+
+SELECT 학과번호, 과목명, 이수구분,
+CASE
+    WHEN 이수구분 = '전필' THEN '전공 필수과목'
+    WHEN 이수구분 = '전선' THEN '전공 선택과목'
+    ELSE '교양 과목!!'
+END AS '전공 필수 및 선택 구분'
+FROM SUBJECT;
+
+
+SELECT 학과번호, 과목명, 이수구분,
+CASE
+    WHEN 이수구분 = '전필' THEN '전공 필수과목'
+    WHEN 이수구분 = '전선' THEN '전공 선택과목'
+    ELSE '교양 과목!!'
+END AS '전공 필수 및 선택 구분'
+FROM SUBJECT;
+
+
+SELECT 학번, 1학년2학기,
+CASE
+    WHEN 1학년2학기 = 4.5 THEN '신'
+    WHEN 1학년2학기 BETWEEN 4.0 AND 4.49 THEN '교수님의 사랑'
+    WHEN 1학년2학기 BETWEEN 3.5 AND 3.99 THEN '교수님의 귀염둥이'
+    WHEN 1학년2학기 BETWEEN 3.0 AND 3.49 THEN '일반인'
+    ELSE '오락문화의 선구자'
+END AS '학점별 분류'
+FROM GRADE;
+
+SELECT 이름, 학년, 주소,
+CASE
+    WHEN SUBSTR(주소, 1, 2)='서울' THEN '서울 거주'
+    WHEN SUBSTR(주소, 1, 2)='경기' THEN '경기 거주'
+    WHEN SUBSTR(주소, 1, 2)='제주' THEN '제주 거주'
+    ELSE '그 외 지역'
+END AS '거주지역'
+FROM student;
+
+
+# JOIN
+SELECT [컬럼명1], [컬럼명2], ...
+FROM [테이블명1] INNER JOIN [테이블명2] ON [JOIN 조건]
+
+
+SELECT *
+FROM student INNER JOIN major ON student.학과 = major.학과이름;
+
+SELECT *
+FROM major INNER JOIN student ON student.학과 = major.학과이름;
+
+SELECT *
+FROM student INNER JOIN major ON major.학과이름= student.학과;
+
+기준으로 삼을 것을 앞으로 빼는 것이 좋습니다.
+
+
+SELECT
+    student.이름,
+    student.학과,
+    student.지도교수,
+    professor.연구실
+FROM student
+JOIN professor ON student.학과 = professor.학과;
+
+
+SELECT
+    student.학번,
+    student.이름 AS 학생이름,
+    professor.이름 AS 교수이름,
+    professor.이메일 AS 교수이메일,
+    scholarship.국가장학금
+FROM student
+INNER JOIN professor ON student.지도교수 = professor.이름
+INNER JOIN scholarship ON student.학번 = scholarship.학번;
+
+
+
+SELECT [컬럼명]
+FROM [테이블명1]
+LEFT OUTER JOIN [테이블명2] ON [조인 조건]
+
+
+SELECT
+    student.학번,
+    student.이름 AS 학생이름,
+    scholarship.국가장학금
+FROM student
+LEFT OUTER JOIN scholarship ON student.학번 = scholarship.학번;
+
+SELECT
+    student.학번,
+    student.이름 AS 학생이름,
+    scholarship.국가장학금
+FROM scholarship
+LEFT OUTER JOIN student ON student.학번 = scholarship.학번;
+
+
+201900001    100000
+202100002    100000
+202000003    100000
+
+CREATE TABLE 장학금여부 (
+학번 INT PRIMARY KEY,
+장학금 INT NOT NULL);
+
+INSERT INTO 장학금여부 (학번, 장학금)
+VALUES (201900001, 100000);
+
+INSERT INTO 장학금여부 (학번, 장학금)
+VALUES (201900002, 100000);
+
+INSERT INTO 장학금여부 (학번, 장학금)
+VALUES (201900003, 100000);
+
+INSERT INTO 장학금여부 (학번, 장학금)
+VALUES (201900004, 100000);
+
+SELECT * from 장학금여부
+
+# INNER JOIN을 하면 공통 분모만 뽑습니다! 지금 한쪽 테이블은 row가 4개밖에 없습니다.
+# 그중에서도 공통된 것은 2개밖에 없습니다.
+SELECT *
+FROM student INNER JOIN 장학금여부 ON student.학번= 장학금여부.학번;
+
+
+# LEFT OUTER JOIN은 왼쪽 테이블 기준입니다.
+# student테이블에 오른쪽 테이블이 덮어쓰기 됩니다.(오른쪽에 없는 빈 학번은 왼쪽에서도 삭제되어 나옵니다.)
+SELECT *
+FROM student LEFT OUTER JOIN 장학금여부 ON student.학번= 장학금여부.학번;
+
+# LEFT OUTER JOIN은 왼쪽 테이블 기준입니다.
+# student테이블에 오른쪽 테이블이 덮어쓰기 됩니다.(오른쪽에 없는 빈 학번은 왼쪽에서도 삭제되어 나옵니다.)
+SELECT *
+FROM 장학금여부 LEFT OUTER JOIN student ON student.학번= 장학금여부.학번;
+
+# FULL OUTER JOIN
+# 합집합
+SELECT *
+FROM 장학금여부 FULL OUTER JOIN student ON student.학번= 장학금여부.학번;
+
+
+# UNION: 데이터 결합
+SELECT 이름
+FROM student
+UNION
+SELECT 이름
+FROM professor;
+
+# GROUP BY
+SELECT 학년, COUNT(학년) AS "학년별 학생 수"
+FROM Student
+GROUP BY 학년
+
+SELECT 학과, COUNT(학과) AS "학과별 학생 수"
+FROM student
+GROUP BY 학과
+
+SELECT 학년, AVG(마일리지) AS "학년별 마일리지 평균"
+FROM student
+GROUP BY 학년;
+
+
+# HAVING: 그룹화된 데이터에 조건을 부여합니다.
+SELECT 학년, COUNT(학년) AS "학년별 학생 수"
+FROM Student
+GROUP BY 학년
+HAVING "학년별 학생 수" < 25

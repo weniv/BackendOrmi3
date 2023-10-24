@@ -1,0 +1,62 @@
+[
+{
+  "model": "blog.post",
+  "pk": 1,
+  "fields": {
+    "title": "수정된 제목 1",
+    "content": "11",
+    "head_image": "",
+    "file_upload": "",
+    "created_at": "2023-10-23T04:12:15.309Z",
+    "updated_at": "2023-10-23"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 2,
+  "fields": {
+    "title": "2",
+    "content": "22",
+    "head_image": "blog/images/2023/10/23/sample.jpg",
+    "file_upload": "blog/files/2023/10/23/sample.jpg",
+    "created_at": "2023-10-23T04:12:31.923Z",
+    "updated_at": "2023-10-23"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 3,
+  "fields": {
+    "title": "3",
+    "content": "33",
+    "head_image": "",
+    "file_upload": "",
+    "created_at": "2023-10-23T04:12:35.594Z",
+    "updated_at": "2023-10-23"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 4,
+  "fields": {
+    "title": "hello4",
+    "content": "44",
+    "head_image": "",
+    "file_upload": "",
+    "created_at": "2023-10-23T04:28:14.706Z",
+    "updated_at": "2023-10-23"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 5,
+  "fields": {
+    "title": "test5",
+    "content": "55",
+    "head_image": "",
+    "file_upload": "",
+    "created_at": "2023-10-22T05:27:42.857Z",
+    "updated_at": "2023-10-22"
+  }
+}
+]
